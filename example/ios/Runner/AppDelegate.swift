@@ -1,5 +1,6 @@
 import UIKit
 import Flutter
+import flutter_up_pay
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
@@ -7,7 +8,12 @@ import Flutter
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
-    GeneratedPluginRegistrant.register(with: self)
+      GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
+    
+    override func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        FlutterUpPayPlugin.sharedInstance().handlePaymentResult(url)
+        return true
+    }
 }
