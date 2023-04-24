@@ -1,7 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_up_pay/flutter_up_pay_method_channel.dart';
-import 'package:flutter_up_pay/union_pay_enum.dart';
 
 void main() {
   MethodChannelFlutterUpPay platform = MethodChannelFlutterUpPay();
@@ -20,6 +19,6 @@ void main() {
   });
 
   test('getPlatformVersion', () async {
-    expect(await platform.startPay(tn: "tn", mode: PaymentEnv.DEVELOPMENT, scheme: "scheme"), '42');
+    expect(await platform.getPlatformVersion(), '42');
   });
 }

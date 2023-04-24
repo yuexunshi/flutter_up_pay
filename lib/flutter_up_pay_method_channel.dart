@@ -11,6 +11,14 @@ class MethodChannelFlutterUpPay extends FlutterUpPayPlatform {
   final methodChannel = const MethodChannel('flutter_up_pay');
 
   @override
+  Future<String?> getPlatformVersion() async {
+    final version =
+    await methodChannel.invokeMethod<String>('getPlatformVersion');
+    return version;
+  }
+
+
+  @override
   Future<String?> startPay(
       {required String tn,
       required PaymentEnv mode,

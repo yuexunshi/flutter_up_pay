@@ -8,11 +8,15 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 class MockFlutterUpPayPlatform
     with MockPlatformInterfaceMixin
     implements FlutterUpPayPlatform {
+  @override
+  Future<String?> getPlatformVersion() => Future.value('42');
 
   @override
-  Future<String?> startPay({required String tn,
-    required PaymentEnv mode,
-    required String scheme}) => Future.value('42');
+  Future<String?> startPay(
+          {required String tn,
+          required PaymentEnv mode,
+          required String scheme}) =>
+      Future.value('42');
 }
 
 void main() {
@@ -27,6 +31,6 @@ void main() {
     MockFlutterUpPayPlatform fakePlatform = MockFlutterUpPayPlatform();
     FlutterUpPayPlatform.instance = fakePlatform;
 
-    expect(await flutterUpPayPlugin.startPay(tn: "tn", mode: PaymentEnv.DEVELOPMENT, scheme: "scheme"), '42');
+    expect(await flutterUpPayPlugin.getPlatformVersion(), '42');
   });
 }
