@@ -10,8 +10,5 @@ public class FlutterUpPayPlugin: NSObject, FlutterPlugin {
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
     result("iOS " + UIDevice.current.systemVersion)
-//      if call.method == "stateString" { // 获取网络状态的实现
-//                result("iOS")
-//       }
   }
 }
