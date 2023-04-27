@@ -12,6 +12,12 @@ class FlutterUpPay {
     return _map(result);
   }
 
+
+  ///## 判断是否安装云闪付App
+   Future<bool> isInstalled() async {
+     return FlutterUpPayPlatform.instance.isInstalled();
+  }
+
   Future<String?> getPlatformVersion() {
     return FlutterUpPayPlatform.instance.getPlatformVersion();
   }

@@ -17,6 +17,12 @@ class MethodChannelFlutterUpPay extends FlutterUpPayPlatform {
     return version;
   }
 
+  @override
+  Future<bool> isInstalled() async {
+    final isInstalled =
+        await methodChannel.invokeMethod<bool>('isInstalled') ?? false;
+    return isInstalled;
+  }
 
   @override
   Future<String?> startPay(

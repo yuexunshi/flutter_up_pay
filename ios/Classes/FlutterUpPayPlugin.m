@@ -38,7 +38,7 @@
 - (void)handleMethodCall:(FlutterMethodCall *)call result:(FlutterResult)result {
     if ([call.method isEqualToString:@"startPay"]) {
         [self startPayCall:call result:result];
-    }else if ([call.method isEqualToString:@"isPaymentAppInstalled"]){
+    }else if ([call.method isEqualToString:@"isInstalled"]){
         [self isPaymentAppInstalledCall:call result:result];
     }else {
 
