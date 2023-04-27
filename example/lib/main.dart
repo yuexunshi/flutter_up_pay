@@ -19,6 +19,14 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final _flutterUpPayPlugin = FlutterUpPay();
   String _platformVersion = 'unKnow';
+  String _installed = 'unKnow';
+
+  Future<void> isInstalled() async {
+    var installed = await _flutterUpPayPlugin.isInstalled();
+    setState(() {
+      _installed = installed ? "installed" : 'no';
+    });
+  }
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> startPay() async {
@@ -62,6 +70,12 @@ class _MyAppState extends State<MyApp> {
                 startPay();
               },
               child: const Text("调起支付"),
+            ),
+            TextButton(
+              onPressed: () {
+                isInstalled();
+              },
+              child:  Text("是否安装:$_installed"),
             )
           ],
         ),

@@ -41,6 +41,11 @@ class FlutterUpPayPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Acti
                 val ret = UPPayAssistEx.startPay(activity, null, null, tn, mode)
                 Log.i(TAG, "startPay:$ret")
             }
+            "isInstalled" -> {
+                val ret = UPPayAssistEx.checkWalletInstalled(activity)
+                Log.i(TAG, "isInstalled:$ret")
+                result.success(ret)
+            }
             else -> {
                 result.notImplemented()
             }
@@ -72,6 +77,7 @@ class FlutterUpPayPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Acti
         this.activity = binding.activity
         binding.addActivityResultListener(this)
     }
+
     override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
         this.activity = binding.activity
         binding.addActivityResultListener(this)
