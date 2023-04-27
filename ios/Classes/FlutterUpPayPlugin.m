@@ -6,7 +6,6 @@
 //
 
 #import "FlutterUpPayPlugin.h"
-#import "UPPaymentControl.h"
 
 @interface FlutterUpPayPlugin ()
 
@@ -39,6 +38,8 @@
 - (void)handleMethodCall:(FlutterMethodCall *)call result:(FlutterResult)result {
     if ([call.method isEqualToString:@"startPay"]) {
         [self startPayCall:call result:result];
+    }else if ([call.method isEqualToString:@"isPaymentAppInstalled"]){
+        [self isPaymentAppInstalledCall:call result:result];
     }else {
 
     }
@@ -58,6 +59,15 @@
                                      fromScheme:scheme
                                            mode:mode
                                  viewController:topController];
+}
+
+- (void)isPaymentAppInstalledCall:(FlutterMethodCall *)call result:(FlutterResult)result {
+    NSDictionary *arguments = call.arguments;
+    NSString *merchantInfo = arguments[@"merchantInfo"];
+    NSString *mode = arguments[@"mode"];
+    
+    BOOL installed = [[UPPaymentControl defaultControl] isPaymentAppInstalled:mode withMerchantInfo:merchantInfo];
+    result(@(installed));
 }
 
 
@@ -90,6 +100,7 @@
   while (topController.presentedViewController) {
     topController = topController.presentedViewController;
   }
+    
   return topController;
 }
 
