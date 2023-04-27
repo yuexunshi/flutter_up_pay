@@ -17,6 +17,11 @@ class MockFlutterUpPayPlatform
           required PaymentEnv mode,
           required String scheme}) =>
       Future.value('42');
+
+  @override
+  Future<bool> isInstalled()  =>
+      Future.value(false);
+
 }
 
 void main() {
