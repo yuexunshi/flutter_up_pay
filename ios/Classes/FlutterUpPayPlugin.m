@@ -39,8 +39,12 @@
 - (void)handleMethodCall:(FlutterMethodCall *)call result:(FlutterResult)result {
     if ([call.method isEqualToString:@"startPay"]) {
         [self startPayCall:call result:result];
-    }else {
-
+    }else if([@"isInstalled" isEqualToString:call.method]){
+         Boolean ret = [[UPPaymentControl defaultControl] isPaymentAppInstalled];
+         result([NSNumber numberWithBool:ret]);
+    }
+    else {
+    result(FlutterMethodNotImplemented);
     }
 }
 
