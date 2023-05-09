@@ -77,6 +77,7 @@ class FlutterUpPayPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Acti
         this.activity = binding.activity
         binding.addActivityResultListener(this)
     }
+
     override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
         this.activity = binding.activity
         binding.addActivityResultListener(this)
