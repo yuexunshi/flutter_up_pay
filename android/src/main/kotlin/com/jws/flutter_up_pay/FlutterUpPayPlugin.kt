@@ -42,7 +42,7 @@ class FlutterUpPayPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Acti
                 Log.i(TAG, "startPay:$ret")
             }
             "isInstalled" -> {
-                val ret = UPPayAssistEx.checkWalletInstalled(activity)
+                val ret = UPPayAssistEx.checkWalletInstalled(activity,"","")
                 Log.i(TAG, "isInstalled:$ret")
                 result.success(ret)
             }
