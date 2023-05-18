@@ -4,7 +4,7 @@
 //
 //  Created by qcao on 15/10/20.
 //  Copyright © 2015年 China Unionpay Co.,Ltd. All rights reserved.
-//  v3.4.2 build1(mini)
+//  v3.4.10 build1(pure)
 //
 
 #import <Foundation/Foundation.h>
@@ -12,6 +12,8 @@
 
 
 typedef void (^UPPaymentResultBlock)(NSString* code, NSDictionary* data);
+typedef void (^UPPaymentDirectAppSucc)(NSArray* directApps);
+typedef void (^UPPaymentDirectAppFail)(NSString* code,NSString* msg);
 
 
 @interface UPPaymentControl : NSObject
@@ -42,14 +44,26 @@ typedef void (^UPPaymentResultBlock)(NSString* code, NSDictionary* data);
 
 
 
+
+/// APP是否已安装检测接口，通过该接口得知用户是否安装银联支付的APP。
+/// @param mode 支付环境
+/// @param merchantID  商户编号
+- (BOOL)isPaymentAppInstalled:(NSString*)mode withMerchantInfo:(NSString *)merchantInfo;
+
+
 /**
- *  APP是否已安装检测接口，通过该接口得知用户是否安装银联支付的APP。
- *
- *  @return 返回是否已经安装了银联支付APP
+ * 通过回调异步返回直通可用app列表
+ * @param mode 支付环境
+ * @param merchantInfo  商户标识
+ * @param succBlock  成功回调，回调参数directApps，表示直通可用app列表，如无可用App则directApps为空数组@[]
+ * @param succBlock  失败回调，回调参数一code，表示错误码（参数错误 : 01，网络错误 : 02，其它 : 03）
+ *                          回调参数二msg，表示错误信息（参数错误 : parameter error，网络错误 : network error，其它 : unknown error）
  */
+- (void)getDirectApps:(NSString*)mode
+     withMerchantInfo:(NSString*)merchantInfo
+            succBlock:(UPPaymentDirectAppSucc)succBlock
+            failBlock:(UPPaymentDirectAppFail)failBlock;
 
-
-- (BOOL)isPaymentAppInstalled;
 
 /**
  *  处理钱包或者独立快捷app支付跳回商户app携带的支付结果Url

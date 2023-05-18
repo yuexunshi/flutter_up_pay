@@ -14,8 +14,9 @@ class FlutterUpPay {
 
 
   ///## 判断是否安装云闪付App
-   Future<bool> isInstalled() async {
-     return FlutterUpPayPlatform.instance.isInstalled();
+  /// merchantInfo ios 必传
+   Future<bool> isInstalled({ String? merchantInfo}) async {
+     return FlutterUpPayPlatform.instance.isInstalled(merchantInfo:merchantInfo);
   }
 
   Future<String?> getPlatformVersion() {

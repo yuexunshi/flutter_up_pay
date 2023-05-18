@@ -33,7 +33,7 @@ abstract class FlutterUpPayPlatform extends PlatformInterface {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 
-  Future<bool> isInstalled() {
+  Future<bool> isInstalled({ String? merchantInfo}) {
     throw UnimplementedError('isInstalled() has not been implemented.');
   }
 }
