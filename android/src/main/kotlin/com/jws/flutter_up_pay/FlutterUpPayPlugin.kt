@@ -42,7 +42,7 @@ class FlutterUpPayPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Acti
                 Log.i(TAG, "startPay:$ret")
             }
             "isInstalled" -> {
-                val ret = UPPayAssistEx.checkWalletInstalled(activity,"","")
+                val ret = UPPayAssistEx.checkWalletInstalled(activity, "", "")
                 Log.i(TAG, "isInstalled:$ret")
                 result.success(ret)
             }
@@ -69,8 +69,10 @@ class FlutterUpPayPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Acti
             "cancel" -> "cancel"
             else -> ""
         }
-        Log.d(TAG, "onActivityResult:requestCode=$requestCode==resultCode=$resultCode==data=$data")
-        this.result?.success(msg)
+        Log.d(TAG, "onActivityResult:requestCode=$requestCode==resultCode=$resultCode==data=${data.extras}")
+        if (requestCode == 10) {
+            this.result?.success(msg)
+        }
         return true
     }
 
