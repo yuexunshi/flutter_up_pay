@@ -69,6 +69,7 @@ class FlutterUpPayPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Acti
             "cancel" -> "cancel"
             else -> ""
         }
+        Log.d(TAG, "onActivityResult:requestCode=$requestCode==resultCode=$resultCode==data=$data")
         this.result?.success(msg)
         return true
     }
